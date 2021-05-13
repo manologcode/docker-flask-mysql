@@ -20,13 +20,13 @@ jobs:
       - name: build the image pyvcardweb
         run: |
           docker buildx build --push \
-            -f Dockerfile_rails --build-arg PYTHON_VERSION=3.9.5 \
+            -f Dockerfile_flask --build-arg PYTHON_VERSION=3.9.5 \
             --tag manologcode/pyvcardweb395:latest \
             --platform linux/amd64,linux/arm64,linux/arm/v7 .
       - name: build the image nginx_flask
         run: |
           docker buildx build --push \
-            -f Dockerfile_nginx119 --build-arg NGINX_VERSION=1.19 \
+            -f Dockerfile_nginx --build-arg NGINX_VERSION=1.19 \
             --tag manologcode/nginx_flask:latest \
             --platform linux/amd64,linux/arm64,linux/arm/v7 .
 
