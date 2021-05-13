@@ -1,0 +1,13 @@
+gunicorn
+Flask
+Flask-WTF
+Flask-SQLAlchemy
+Flask-Login
+Flask-Migrate
+Flask-Mail
+WTForms-Components
+email_validator
+pyqrcode
+pillow
+mysqlclient
+mysql-connector-python

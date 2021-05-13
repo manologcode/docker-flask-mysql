@@ -1,0 +1,43 @@
+version: '3.1'
+
+services:
+  flaskapp:
+    image: manologcode/pyvcardweb393
+    restart: always
+    container_name: py_vcard
+    expose:
+      - "8000"
+    volumes:
+      - ./web:/home/flask/app/web
+    depends_on:
+      - db_mysql
+    environment:
+      FLASK_APP: entrypoint
+      FLASK_ENV: production
+      APP_SETTINGS_MODULE: config.staging
+
+  nginx:
+    image: manologcode/nginx_flask119
+    restart: always
+    container_name: nginx_vcard
+    ports:
+      - "8080:80"
+    depends_on:
+      - flaskapp
+
+  db_mysql:
+    image: mysql:8.0
+    container_name: mysql_db_vcard
+    ports: 
+        - "3306:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+        MYSQL_DATABASE: vcardweb
+        MYSQL_USER: us_vcardweb
+        MYSQL_PASSWORD: ad34Gd_HLfe7689oPju
+        MYSQL_ROOT_PASSWORD: toor 
+    volumes:
+      - mysql_vcardweb:/var/lib/mysql
+
+volumes:
+  mysql_vcardweb:  
