@@ -17,16 +17,16 @@ jobs:
           version: latest
       - name: login to docker hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-      - name: build the image pyvcardweb
+      - name: build the image pyappflask
         run: |
           docker buildx build --push \
             -f Dockerfile_flask --build-arg PYTHON_VERSION=3.9.5 \
-            --tag manologcode/pyvcardweb395:latest \
+            --tag manologcode/pyappflask395:latest \
             --platform linux/amd64,linux/arm64,linux/arm/v7 .
-      - name: build the image nginx_flask
+      - name: build the image nginx_flask119
         run: |
           docker buildx build --push \
             -f Dockerfile_nginx --build-arg NGINX_VERSION=1.19 \
-            --tag manologcode/nginx_flask:latest \
+            --tag manologcode/nginx_flask119:latest \
             --platform linux/amd64,linux/arm64,linux/arm/v7 .
 

@@ -1,10 +1,8 @@
-import os
+from flask import Flask
 
-from flask import send_from_directory
+app = Flask(__name__)
 
-from app import create_app
-
-
-settings_module = os.getenv('APP_SETTINGS_MODULE')
-app = create_app(settings_module)
+@app.route('/')
+def index():
+    return "This is an example app"
 
